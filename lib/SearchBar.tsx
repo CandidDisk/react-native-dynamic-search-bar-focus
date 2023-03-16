@@ -64,12 +64,6 @@ export default class SearchBar extends React.Component<
 > {
   inputRef: TextInput | null = null;
 
-  onRender = () => {
-    if (this.props.focusOnLoad) {
-      this.inputRef?.focus();
-    }
-  };
-
   handleSearchBarPress = () => {
     this.inputRef?.focus();
     this.props.onPress && this.props.onPress();
@@ -143,6 +137,7 @@ export default class SearchBar extends React.Component<
         {...this.props}
         onBlur={onBlur}
         onFocus={onFocus}
+        autoFocus={this.props.focusOnLoad}
         ref={(ref) => (this.inputRef = ref)}
         style={[_textInputStyle(darkMode), textInputStyle]}
         placeholder={placeholder}
@@ -184,9 +179,6 @@ export default class SearchBar extends React.Component<
       renderClearIcon,
       shadow = true,
     } = this.props;
-    useLayoutEffect(() => {
-      this.onRender();
-    }, []);
     return (
       <RNBounceable
         {...this.props}

@@ -13,11 +13,6 @@ const defaultClearIcon = require("./local-assets/clear-icon.png");
 const whiteClearIcon = require("./local-assets/clear-icon-white.png");
 export default class SearchBar extends React.Component {
     inputRef = null;
-    onRender = () => {
-        if (this.props.focusOnLoad) {
-            this.inputRef?.focus();
-        }
-    };
     handleSearchBarPress = () => {
         this.inputRef?.focus();
         this.props.onPress && this.props.onPress();
@@ -42,12 +37,12 @@ export default class SearchBar extends React.Component {
       </RNBounceable>);
     };
     renderTextInput = () => {
-        const { onBlur, onFocus, textInputStyle, darkMode = false, placeholder = "Search here...", placeholderTextColor, } = this.props;
+        const { onBlur, onFocus, textInputStyle, darkMode = false, placeholder = "Search here...", placeholderTextColor, focusOnLoad } = this.props;
         let _placeholderTextColor = placeholderTextColor;
         if (!placeholderTextColor) {
             _placeholderTextColor = darkMode ? "#fdfdfd" : "#19191a";
         }
-        return (<TextInput placeholderTextColor={_placeholderTextColor} {...this.props} onBlur={onBlur} onFocus={onFocus} ref={(ref) => (this.inputRef = ref)} style={[_textInputStyle(darkMode), textInputStyle]} placeholder={placeholder}/>);
+        return (<TextInput autoFocus={focusOnLoad} placeholderTextColor={_placeholderTextColor} {...this.props} onBlur={onBlur} onFocus={onFocus} ref={(ref) => (this.inputRef = ref)} style={[_textInputStyle(darkMode), textInputStyle]} placeholder={placeholder}/>);
     };
     renderClearIcon = () => {
         const { darkMode = false, clearIconComponent, clearIconImageStyle, ImageComponent = Image, clearIconImageSource = darkMode ? whiteClearIcon : defaultClearIcon, } = this.props;
@@ -57,9 +52,6 @@ export default class SearchBar extends React.Component {
     };
     render() {
         const { style, darkMode = false, spinnerVisibility, renderClearIcon, shadow = true, } = this.props;
-        useLayoutEffect(() => {
-            this.onRender();
-        }, []);
         return (<RNBounceable {...this.props} bounceEffectIn={0.97} style={[_container(darkMode, shadow), style]} onPress={this.handleSearchBarPress}>
         {spinnerVisibility ? this.renderSpinner() : this.renderSearchIcon()}
         {this.renderTextInput()}
