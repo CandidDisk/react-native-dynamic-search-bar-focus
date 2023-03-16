@@ -6,7 +6,7 @@ interface Style {
     clearIconContainer: ViewStyle;
     spinnerContainer: ViewStyle;
 }
-export declare const _container: (darkMode: boolean) => ViewStyle;
+export declare const _container: (darkMode: boolean, shadow: boolean) => ViewStyle;
 export declare const _textInputStyle: (darkMode: boolean) => TextStyle;
 declare const _default: Style;
 export default _default;

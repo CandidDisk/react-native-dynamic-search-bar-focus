@@ -12,6 +12,12 @@ const defaultClearIcon = require("./local-assets/clear-icon.png");
 const whiteClearIcon = require("./local-assets/clear-icon-white.png");
 export default class SearchBar extends React.Component {
     inputRef = null;
+    onRender = () => {
+        if (this.props.focusOnLoad) {
+            this.inputRef?.focus();
+        }
+        console.log("weeee");
+    };
     handleSearchBarPress = () => {
         this.inputRef?.focus();
         this.props.onPress && this.props.onPress();
@@ -50,11 +56,12 @@ export default class SearchBar extends React.Component {
       </RNBounceable>);
     };
     render() {
-        const { style, darkMode = false, spinnerVisibility } = this.props;
-        return (<RNBounceable {...this.props} bounceEffect={0.97} style={[_container(darkMode), style]} onPress={this.handleSearchBarPress}>
+        const { style, darkMode = false, spinnerVisibility, renderClearIcon, shadow = true, } = this.props;
+        this.onRender();
+        return (<RNBounceable {...this.props} bounceEffectIn={0.97} style={[_container(darkMode, shadow), style]} onPress={this.handleSearchBarPress}>
         {spinnerVisibility ? this.renderSpinner() : this.renderSearchIcon()}
         {this.renderTextInput()}
-        {this.renderClearIcon()}
+        {renderClearIcon && this.renderClearIcon()}
       </RNBounceable>);
     }
 }

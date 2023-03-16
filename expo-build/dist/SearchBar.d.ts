@@ -7,6 +7,9 @@ export interface ISource {
 }
 export interface ISearchBarProps extends TouchableWithoutFeedbackProps, TextInputProps {
     darkMode?: boolean;
+    shadow?: boolean;
+    focusOnLoad?: boolean;
+    renderClearIcon?: boolean;
     placeholder?: string;
     ImageComponent?: any;
     SpinnerType?: string;
@@ -32,6 +35,7 @@ interface IState {
 }
 export default class SearchBar extends React.Component<ISearchBarProps, IState> {
     inputRef: TextInput | null;
+    onRender: () => void;
     handleSearchBarPress: () => void;
     handleOnClearPress: () => void;
     renderSpinner: () => false | JSX.Element;
