@@ -34,6 +34,7 @@ export interface ISearchBarProps
   shadow?: boolean;
   focusOnLoad?: boolean;
   renderClearIcon?: boolean;
+  value?: string;
   placeholder?: string;
   ImageComponent?: any;
   SpinnerType?: string;
@@ -106,7 +107,7 @@ export default class SearchBar extends React.Component<
       searchIconImageSource = darkMode ? whiteSearchIcon : defaultSearchIcon,
     } = this.props;
     return (
-      <RNBounceable style={styles.searchContainer} onPress={onSearchPress}>
+      <View style={styles.searchContainer}>
         {searchIconComponent || (
           <ImageComponent
             resizeMode="contain"
@@ -114,13 +115,14 @@ export default class SearchBar extends React.Component<
             style={[styles.searchIconImageStyle, searchIconImageStyle]}
           />
         )}
-      </RNBounceable>
+      </View>
     );
   };
 
   renderTextInput = () => {
     const {
       focusOnLoad,
+      value,
       onBlur,
       onFocus,
       textInputStyle,
@@ -138,6 +140,7 @@ export default class SearchBar extends React.Component<
       <TextInput
         placeholderTextColor={_placeholderTextColor}
         {...this.props}
+        value={value}
         onBlur={onBlur}
         onFocus={onFocus}
         onSubmitEditing={onSubmitEnter}
