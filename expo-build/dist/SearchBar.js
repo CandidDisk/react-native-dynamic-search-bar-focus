@@ -66,3 +66,4 @@ export default class SearchBar extends React.Component {
     }
 }
 //# sourceMappingURL=SearchBar.js.map
+//# sourceMappingURL=SearchBar.js.map

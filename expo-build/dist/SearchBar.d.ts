@@ -1,47 +1,14 @@
-import * as React from "react";
-import { TextInput, ViewStyle, TextStyle, ImageStyle, TextInputProps, TouchableWithoutFeedbackProps } from "react-native";
-export interface ISource {
-    source: string | {
-        uri: string;
-    };
-}
-export interface ISearchBarProps extends TouchableWithoutFeedbackProps, TextInputProps {
-    darkMode?: boolean;
-    shadow?: boolean;
-    focusOnLoad?: boolean;
-    renderClearIcon?: boolean;
-    placeholder?: string;
-    ImageComponent?: any;
-    SpinnerType?: string;
-    spinnerSize?: number;
-    spinnerColor?: string;
-    spinnerVisibility?: boolean;
-    placeholderTextColor?: string;
-    searchIconComponent?: React.ReactChild;
-    clearIconComponent?: React.ReactChild;
-    searchIconImageSource?: ISource;
-    clearIconImageSource?: ISource;
-    style?: ViewStyle | Array<ViewStyle> | undefined;
-    textInputStyle?: TextStyle | Array<TextStyle>;
-    searchIconImageStyle?: ImageStyle | Array<ImageStyle>;
-    clearIconImageStyle?: ImageStyle | Array<ImageStyle>;
-    onBlur?: () => void;
-    onFocus?: () => void;
-    onPress?: () => void;
-    onSearchPress?: () => void;
-    onClearPress?: () => void;
-}
-interface IState {
-}
-export default class SearchBar extends React.Component<ISearchBarProps, IState> {
-    inputRef: TextInput | null;
+export default class SearchBar extends React.Component<any, any, any> {
+    constructor(props: any);
+    constructor(props: any, context: any);
+    inputRef: null;
     onRender: () => void;
     handleSearchBarPress: () => void;
     handleOnClearPress: () => void;
-    renderSpinner: () => false | JSX.Element;
+    renderSpinner: () => any;
     renderSearchIcon: () => JSX.Element;
     renderTextInput: () => JSX.Element;
     renderClearIcon: () => JSX.Element;
     render(): JSX.Element;
 }
-export {};
+import * as React from "react";

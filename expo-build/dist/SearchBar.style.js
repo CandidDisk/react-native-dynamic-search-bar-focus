@@ -41,3 +41,4 @@ export default StyleSheet.create({
     },
 });
 //# sourceMappingURL=SearchBar.style.js.map
+//# sourceMappingURL=SearchBar.style.js.map
