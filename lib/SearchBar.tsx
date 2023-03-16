@@ -26,6 +26,7 @@ const whiteClearIcon = require("./local-assets/clear-icon-white.png");
 export interface ISource {
   source: string | { uri: string };
 }
+// @ts-ignore
 export interface ISearchBarProps
   extends TouchableWithoutFeedbackProps,
     TextInputProps {
@@ -135,6 +136,7 @@ export default class SearchBar extends React.Component<
     if (!placeholderTextColor) {
       _placeholderTextColor = darkMode ? "#fdfdfd" : "#19191a";
     }
+    // @ts-ignore
     return (
       <TextInput
         placeholderTextColor={_placeholderTextColor}
@@ -156,6 +158,7 @@ export default class SearchBar extends React.Component<
       ImageComponent = Image,
       clearIconImageSource = darkMode ? whiteClearIcon : defaultClearIcon,
     } = this.props;
+    // @ts-ignore
     return (
       <RNBounceable
         bounceEffect={0.8}

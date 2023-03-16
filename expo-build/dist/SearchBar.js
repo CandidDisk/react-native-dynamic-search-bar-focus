@@ -6,6 +6,7 @@ import RNBounceable from "@freakycoder/react-native-bounceable";
  * ? Local Imports
  */
 import styles, { _container, _textInputStyle } from "./SearchBar.style";
+import {useLayoutEffect} from "react";
 const defaultSearchIcon = require("./local-assets/search-icon.png");
 const whiteSearchIcon = require("./local-assets/search-icon-white.png");
 const defaultClearIcon = require("./local-assets/clear-icon.png");
@@ -16,7 +17,6 @@ export default class SearchBar extends React.Component {
         if (this.props.focusOnLoad) {
             this.inputRef?.focus();
         }
-        console.log("weeee");
     };
     handleSearchBarPress = () => {
         this.inputRef?.focus();
@@ -57,7 +57,9 @@ export default class SearchBar extends React.Component {
     };
     render() {
         const { style, darkMode = false, spinnerVisibility, renderClearIcon, shadow = true, } = this.props;
-        this.onRender();
+        useLayoutEffect(() => {
+            this.onRender();
+        }, []);
         return (<RNBounceable {...this.props} bounceEffectIn={0.97} style={[_container(darkMode, shadow), style]} onPress={this.handleSearchBarPress}>
         {spinnerVisibility ? this.renderSpinner() : this.renderSearchIcon()}
         {this.renderTextInput()}
