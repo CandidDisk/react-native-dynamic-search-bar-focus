@@ -6,7 +6,6 @@ import RNBounceable from "@freakycoder/react-native-bounceable";
  * ? Local Imports
  */
 import styles, { _container, _textInputStyle } from "./SearchBar.style";
-import {useLayoutEffect} from "react";
 const defaultSearchIcon = require("./local-assets/search-icon.png");
 const whiteSearchIcon = require("./local-assets/search-icon-white.png");
 const defaultClearIcon = require("./local-assets/clear-icon.png");
@@ -37,15 +36,17 @@ export default class SearchBar extends React.Component {
       </RNBounceable>);
     };
     renderTextInput = () => {
-        const { onBlur, onFocus, textInputStyle, darkMode = false, placeholder = "Search here...", placeholderTextColor, focusOnLoad } = this.props;
+        const { focusOnLoad, onBlur, onFocus, textInputStyle, darkMode = false, placeholder = "Search here...", placeholderTextColor, onSubmitEnter, } = this.props;
         let _placeholderTextColor = placeholderTextColor;
         if (!placeholderTextColor) {
             _placeholderTextColor = darkMode ? "#fdfdfd" : "#19191a";
         }
-        return (<TextInput autoFocus={focusOnLoad} placeholderTextColor={_placeholderTextColor} {...this.props} onBlur={onBlur} onFocus={onFocus} ref={(ref) => (this.inputRef = ref)} style={[_textInputStyle(darkMode), textInputStyle]} placeholder={placeholder}/>);
+        // @ts-ignore
+        return (<TextInput placeholderTextColor={_placeholderTextColor} {...this.props} onBlur={onBlur} onFocus={onFocus} onSubmitEditing={onSubmitEnter} autoFocus={focusOnLoad} ref={(ref) => (this.inputRef = ref)} style={[_textInputStyle(darkMode), textInputStyle]} placeholder={placeholder}/>);
     };
     renderClearIcon = () => {
         const { darkMode = false, clearIconComponent, clearIconImageStyle, ImageComponent = Image, clearIconImageSource = darkMode ? whiteClearIcon : defaultClearIcon, } = this.props;
+        // @ts-ignore
         return (<RNBounceable bounceEffect={0.8} style={styles.clearIconContainer} onPress={this.handleOnClearPress}>
         {clearIconComponent || (<ImageComponent resizeMode="contain" source={clearIconImageSource} style={[styles.clearIconImageStyle, clearIconImageStyle]}/>)}
       </RNBounceable>);
@@ -59,5 +60,4 @@ export default class SearchBar extends React.Component {
       </RNBounceable>);
     }
 }
-//# sourceMappingURL=SearchBar.js.map
 //# sourceMappingURL=SearchBar.js.map

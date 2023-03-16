@@ -54,6 +54,7 @@ export interface ISearchBarProps
   onPress?: () => void;
   onSearchPress?: () => void;
   onClearPress?: () => void;
+  onSubmitEnter?: () => void;
 }
 
 interface IState {}
@@ -119,12 +120,14 @@ export default class SearchBar extends React.Component<
 
   renderTextInput = () => {
     const {
+      focusOnLoad,
       onBlur,
       onFocus,
       textInputStyle,
       darkMode = false,
       placeholder = "Search here...",
       placeholderTextColor,
+      onSubmitEnter,
     } = this.props;
     let _placeholderTextColor = placeholderTextColor;
     if (!placeholderTextColor) {
@@ -137,7 +140,8 @@ export default class SearchBar extends React.Component<
         {...this.props}
         onBlur={onBlur}
         onFocus={onFocus}
-        autoFocus={this.props.focusOnLoad}
+        onSubmitEditing={onSubmitEnter}
+        autoFocus={focusOnLoad}
         ref={(ref) => (this.inputRef = ref)}
         style={[_textInputStyle(darkMode), textInputStyle]}
         placeholder={placeholder}
