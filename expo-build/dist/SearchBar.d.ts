@@ -10,6 +10,7 @@ export interface ISearchBarProps extends TouchableWithoutFeedbackProps, TextInpu
     shadow?: boolean;
     focusOnLoad?: boolean;
     renderClearIcon?: boolean;
+    value?: string;
     placeholder?: string;
     ImageComponent?: any;
     SpinnerType?: string;

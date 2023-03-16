@@ -31,18 +31,18 @@ export default class SearchBar extends React.Component {
     };
     renderSearchIcon = () => {
         const { onSearchPress, darkMode = false, searchIconComponent, searchIconImageStyle, ImageComponent = Image, searchIconImageSource = darkMode ? whiteSearchIcon : defaultSearchIcon, } = this.props;
-        return (<RNBounceable style={styles.searchContainer} onPress={onSearchPress}>
+        return (<View style={styles.searchContainer}>
         {searchIconComponent || (<ImageComponent resizeMode="contain" source={searchIconImageSource} style={[styles.searchIconImageStyle, searchIconImageStyle]}/>)}
-      </RNBounceable>);
+      </View>);
     };
     renderTextInput = () => {
-        const { focusOnLoad, onBlur, onFocus, textInputStyle, darkMode = false, placeholder = "Search here...", placeholderTextColor, onSubmitEnter, } = this.props;
+        const { focusOnLoad, value, onBlur, onFocus, textInputStyle, darkMode = false, placeholder = "Search here...", placeholderTextColor, onSubmitEnter, } = this.props;
         let _placeholderTextColor = placeholderTextColor;
         if (!placeholderTextColor) {
             _placeholderTextColor = darkMode ? "#fdfdfd" : "#19191a";
         }
         // @ts-ignore
-        return (<TextInput placeholderTextColor={_placeholderTextColor} {...this.props} onBlur={onBlur} onFocus={onFocus} onSubmitEditing={onSubmitEnter} autoFocus={focusOnLoad} ref={(ref) => (this.inputRef = ref)} style={[_textInputStyle(darkMode), textInputStyle]} placeholder={placeholder}/>);
+        return (<TextInput placeholderTextColor={_placeholderTextColor} {...this.props} value={value} onBlur={onBlur} onFocus={onFocus} onSubmitEditing={onSubmitEnter} autoFocus={focusOnLoad} ref={(ref) => (this.inputRef = ref)} style={[_textInputStyle(darkMode), textInputStyle]} placeholder={placeholder}/>);
     };
     renderClearIcon = () => {
         const { darkMode = false, clearIconComponent, clearIconImageStyle, ImageComponent = Image, clearIconImageSource = darkMode ? whiteClearIcon : defaultClearIcon, } = this.props;
