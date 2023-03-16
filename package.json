@@ -1,5 +1,5 @@
 {
-  "name": "react-native-dynamic-search-bar",
+  "name": "react-native-dynamic-search-bar-focus-clear",
   "version": "2.0.2",
   "description": "Fully customizable and dynamic Search Bar for React Native.",
   "keywords": [
@@ -22,7 +22,7 @@
   "homepage": "https://www.freakycoder.com",
   "bugs": "https://github.com/WrathChaos/react-native-dynamic-search-bar/issues",
   "main": "./expo-build/dist/SearchBar.js",
-  "repository": "git@github.com:WrathChaos/react-native-dynamic-search-bar.git",
+  "repository": "git@github.com:CandidDisk/react-native-dynamic-search-bar-focus-clear.git",
   "author": "Kuray (FreakyCoder) <kurayogun@gmail.com>",
   "license": "MIT",
   "peerDependencies": {
