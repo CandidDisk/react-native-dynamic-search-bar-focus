@@ -29,6 +29,9 @@ export interface ISearchBarProps
   extends TouchableWithoutFeedbackProps,
     TextInputProps {
   darkMode?: boolean;
+  shadow?: boolean;
+  focusOnLoad?: boolean;
+  renderClearIcon?: boolean;
   placeholder?: string;
   ImageComponent?: any;
   SpinnerType?: string;
@@ -58,6 +61,13 @@ export default class SearchBar extends React.Component<
   IState
 > {
   inputRef: TextInput | null = null;
+
+  onRender = () => {
+    if (this.props.focusOnLoad) {
+      this.inputRef?.focus();
+    }
+    console.log("weeee");
+  };
 
   handleSearchBarPress = () => {
     this.inputRef?.focus();
@@ -164,17 +174,24 @@ export default class SearchBar extends React.Component<
   };
 
   render() {
-    const { style, darkMode = false, spinnerVisibility } = this.props;
+    const {
+      style,
+      darkMode = false,
+      spinnerVisibility,
+      renderClearIcon,
+      shadow = true,
+    } = this.props;
+    this.onRender();
     return (
       <RNBounceable
         {...this.props}
-        bounceEffect={0.97}
-        style={[_container(darkMode), style]}
+        bounceEffectIn={0.97}
+        style={[_container(darkMode, shadow), style]}
         onPress={this.handleSearchBarPress}
       >
         {spinnerVisibility ? this.renderSpinner() : this.renderSearchIcon()}
         {this.renderTextInput()}
-        {this.renderClearIcon()}
+        {renderClearIcon && this.renderClearIcon()}
       </RNBounceable>
     );
   }
